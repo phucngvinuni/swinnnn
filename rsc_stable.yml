@@ -1,0 +1,36 @@
+name: rsc-stable # Tên môi trường mới, ổn định
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # --- Lõi Conda ---
+  - python=3.10
+  - pip
+  
+  # === THAY ĐỔI QUAN TRỌNG NHẤT ===
+  # Sử dụng PyTorch 2.1.2 (phiên bản ổn định) với CUDA 12.1
+  - pytorch::pytorch=2.1.2
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - pytorch-cuda=12.1
+  
+  # Các phụ thuộc khác
+  - numpy<1.26
+  - cython
+  - tqdm
+  - matplotlib
+  
+  # --- Lõi Pip ---
+  - pip:
+    - ultralytics
+    - timm
+    # torchmetrics[detection] sẽ tự kéo theo pycocotools
+    - torchmetrics[detection]
+    # Cài opencv-python phiên bản đầy đủ để tránh lỗi imshow
+    - opencv-python 
+    - lpips
+    - einops
+    - pytorch-msssim
